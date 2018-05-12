@@ -145,7 +145,7 @@ $(function() {
 
 </head>
 <body >
-	<div class=".container-fluid" id="chenkun">
+	<div class="container" id="chenkun">
 		<!-- 2、添加，删除按钮 -->
 		<div class="row">
 			<div class="col-sm-3 col-md-7 sidebar">
@@ -153,7 +153,7 @@ $(function() {
 					<form class="form-inline" action="brandInfo/getByName/1">
 					  <div class="form-group">
 					    <div class="input-group">
-					      <input type="text" class="form-control" id="brandName" placeholder="供应商名字" name="brandName">
+					      <input type="text" class="form-control" id="brandName" placeholder="请输入品牌..." name="brandName">
 					    </div>
 					  </div>
 					  <button type="submit" class=" btn btn-primary ">查询</button>
@@ -169,31 +169,33 @@ $(function() {
 		<!-- 3、列表详情 -->
 		<div class="row" scrolling="auto">
 			<div class="col-md-12 ">
-				<table class="nth-child table table-hover  table-condensed  table-bordered ">
-					<tr>
-						<th >全选<input type="checkbox" id="selectAll" /></th>
-						<th >品牌</th>
-						<th >联系人</th>
-						<th >邮箱</th>
-						<th >电话</th>
-						<th class="col-md-2">备注</th>
-						<th >操作</th>
+				<table class="nth-child table table-hover  table-condensed  table-bordered " align="center">
+					<tr >
+						<th ><input type="checkbox" id="selectAll" />全选</th>
+						<th style="text-align:center;">品牌</th>
+						<th style="text-align:center;">联系人</th>
+						<th style="text-align:center;">邮箱</th>
+						<th style="text-align:center;">电话</th>
+						<th class="col-md-2" style="text-align:center;">备注</th>
+						<th class="col-md-2" style="text-align:center;" >操作</th>
 					</tr>
 					<c:forEach items="${pageInfo.list }" var="info">
-						<input type="hidden" name="id" value="${info.id }">
+						<input type="hidden" name="id" value="${info.id }" >
 						<tr>
-							<td><input type="checkbox" value="${info.id}" class="selectOne" name="id"></td>
-							<td>${info.brandName}</td>
-							<td>${info.contact}</td>
-							<td>${info.email}</td>
-							<td>${info.tel}</td>
-							<td >${info.remark}</td>
-							<td >
+							<td style="vertical-align:middle;"><input type="checkbox" value="${info.id}" class="selectOne" name="id" ></td>
+							<td style="vertical-align:middle;">${info.brandName}</td>
+							<td style="vertical-align:middle;">${info.contact}</td>
+							<td style="vertical-align:middle;">${info.email}</td>
+							<td style="vertical-align:middle;">${info.tel}</td>
+							<td style="vertical-align:middle;">${info.remark}</td>
+							<td style="vertical-align:middle;">
 								<button type="button" class="btn btn-info btn-sm btn-update"
 									data-toggle="modal" data-target="#myModal-update"
 									btn-id="${info.id }">修改</button>
 								<button type="button" class="btn btn-danger btn-sm btn-del"
 									btn-id="${info.id }" pageNum="${pageInfo.pageNum}">删除</button>
+								<button type="button" class="btn btn-info btn-sm "
+									btn-id="${info.id }" pageNum="${pageInfo.pageNum}">导出</button>
 							</td>
 						</tr>
 					</c:forEach>
@@ -202,7 +204,7 @@ $(function() {
 		</div>
 			<!-- 4、分页 -->
 			 <div class="row">
-				<div class="col-md-4">当前是第${pageInfo.pageNum}页，一共有${pageInfo.total}条记录</div>
+				<div class="col-md-4">当前是第<font style="color:blue;">${pageInfo.pageNum}</font>页，一共有<font style="color:blue;">${pageInfo.total}</font>条记录</div>
 				<div class="col-md-4 col-md-offset-4">
 					<nav aria-label="Page navigation">
 					<!-- 根据不同结果显示没同分页 -->
