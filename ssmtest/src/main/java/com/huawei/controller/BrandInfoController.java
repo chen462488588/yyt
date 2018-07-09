@@ -39,7 +39,7 @@ public class BrandInfoController {
 		// 2、查询，使用了aop
 		List<BrandInfo> list = service.getAll();
 		// 3、封装到pageInfo
-		PageInfo<BrandInfo> pageInfo = new PageInfo<>(list, 3);
+		PageInfo<BrandInfo> pageInfo = new PageInfo<>(list, 5);
 		map.put("pageInfo", pageInfo);
 		return "BrandInfoList";
 	}
@@ -59,7 +59,7 @@ public class BrandInfoController {
 			list = service.getBrandInfoByName(brandName);
 		}
 		// 3、封装到pageInfo
-		PageInfo<BrandInfo> pageInfo = new PageInfo<>(list, 3);
+		PageInfo<BrandInfo> pageInfo = new PageInfo<>(list, 5);
 		map.put("pageInfo", pageInfo);
 		map.put("pageType", "queryByName");
 		map.put("brandName", brandName);

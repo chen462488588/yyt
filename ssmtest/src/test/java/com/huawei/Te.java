@@ -3,7 +3,9 @@
  */
 package com.huawei;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /** @author create by urmagical
@@ -12,8 +14,8 @@ import java.util.List;
 */
 public class Te {
 	public static void main(String[] args) {
-		List<String> list = new ArrayList<>();
-		System.out.println(list.getClass());
+		SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
+		System.out.println(format.format(new Date()));
 	}
 }
 

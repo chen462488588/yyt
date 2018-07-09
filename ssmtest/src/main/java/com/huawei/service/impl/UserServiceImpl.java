@@ -33,7 +33,7 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public User checkIsExist(User user) {
 		UserExample example = new UserExample();
-		if (null != user) {
+		if (null != user.getPassword()&&null !=user.getUsername()) {
 			example.createCriteria().andUsernameEqualTo(user.getUsername());
 			List<User> list = mapper.selectByExample(example);
 			if (null != list && !list.isEmpty()) {

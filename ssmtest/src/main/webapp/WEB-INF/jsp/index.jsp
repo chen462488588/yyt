@@ -52,9 +52,11 @@
 			<div class="col-sm-3 col-md-2 sidebar">
 				<ul class="nav nav-sidebar">
 					<li class="active"><a href="javascript:void(0);"
-						url="http://www.baidu.com" class="iframeTarget">首页</a></li>
+						url="page/home" class="iframeTarget">首页</a></li>
 					<li><a href="javascript:void(0);"
 						url="brandInfo/getBrandInfoList/1" class="iframeTarget">供应商信息管理</a></li>
+					<li><a href="javascript:void(0);"
+						url="page/templateManage" class="iframeTarget">模板管理</a></li>
 
 				</ul>
 			</div>

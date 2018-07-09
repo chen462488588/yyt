@@ -27,6 +27,13 @@ $(function() {
 	$("#add_confirm").click(function() {
 		save("add");
 	})
+	
+	//给导出按钮绑定点击事件
+	$(".exportExcel").click(function(){
+		var id = $(this).attr("btn-id");
+	    exportExcel(id);
+	})
+	
 
 	/*修改前到后台拿到数据，进行回显  */
 	$(".btn-update").click(function() {
@@ -57,7 +64,6 @@ $(function() {
 				url : "/brandInfo/"+type+"BrandInfo",
 				data : $("#"+type+"_form").serialize(),
 				success : function(result) {
-					alert(result);
 					if (result == "ok") {
 						if(type=="update"){
 							alert("修改成功");
@@ -73,7 +79,24 @@ $(function() {
 					}
 				}
 			})
-	}
+		}
+	//export excle
+	function exportExcel(id){
+		$.ajax({
+				type : 'POST',
+				dataType : 'text',
+				url : "/excel/exportExcel/"+id,
+				success : function(result) {
+					if (result=="ok") {
+						alert("导出成功");
+					}else if (result=="FileNotExist") {
+						alert("导出失败,模板文件未找到");
+					}else{
+						alert("导出文件出错");
+					}
+				}
+			})
+		}
 	//全选/全不选
 	$("#selectAll").click(function(){
 		$(".selectOne").prop("checked",$("#selectAll").prop("checked"))
@@ -82,7 +105,8 @@ $(function() {
 	$(".selectOne").click(function(){
 		$("#selectAll").prop("checked",$(".selectOne").length==$(".selectOne:checked").length)
 	})
-		/*  删除单个 */
+	
+	/*  删除单个 */
 	$(".btn-del").click(function() {
 		var pageNum=$(this).attr("pageNum");
 		if(confirm("是否确认删除？？？？")){
@@ -163,7 +187,7 @@ $(function() {
 			<div class="col-md-2  col-md-offset-10">
 				<button type="button" class="btn btn-primary" data-toggle="modal"
 					data-target="#add_myModal" id="add-btn" pageNum = "${pageInfo.pageNum }">添加</button>
-				<button type="button" class="btn btn-danger" id="del-many" pageNum="${pageInfo.pageNum}">删除</button>
+				<button type="button" class="btn btn-danger" id="del-many" pageNum="${pageInfo.pageNum}">批量删除</button>
 			</div>
 		</div>
 		<!-- 3、列表详情 -->
@@ -194,8 +218,8 @@ $(function() {
 									btn-id="${info.id }">修改</button>
 								<button type="button" class="btn btn-danger btn-sm btn-del"
 									btn-id="${info.id }" pageNum="${pageInfo.pageNum}">删除</button>
-								<button type="button" class="btn btn-info btn-sm "
-									btn-id="${info.id }" pageNum="${pageInfo.pageNum}">导出</button>
+								<button  type="button" class="btn btn-success btn-sm exportExcel"
+									btn-id="${info.id }">导出</button>
 							</td>
 						</tr>
 					</c:forEach>

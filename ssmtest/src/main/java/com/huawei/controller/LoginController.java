@@ -25,7 +25,6 @@ public class LoginController {
 
 	@RequestMapping("checkIsExist")
 	public String checkIsExist(User user) {
-		System.out.println(user.getUsername()+":"+user.getPassword());
 		user = userService.checkIsExist(user);
 		if (null!=user) {
 			return "index";

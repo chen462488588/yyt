@@ -94,4 +94,15 @@ public class User {
 	public void setFlag(Boolean flag) {
 		this.flag = flag;
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", flag=" + flag + "]";
+	}
+
+ 
+	
 }
